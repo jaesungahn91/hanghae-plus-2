@@ -133,7 +133,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -145,7 +146,7 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "b12aa99d2dcf9d81",
+  "active": "cd5f209e94a3c251",
   "lastOpenFiles": [
     "week1/image/overview-actions-simple.webp",
     "week1/week1.md",
