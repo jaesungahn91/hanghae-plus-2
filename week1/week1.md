@@ -29,7 +29,7 @@ https://docs.docker.com/compose/
 
 # CI/CD
 https://www.redhat.com/ko/topics/devops/what-cicd-pipeline
-![ci-cd-flow-desktop_0.png](./Image/ci-cd-flow-desktop_0.png)
+![ci-cd-flow-desktop_0.png](./image/ci-cd-flow-desktop_0.png)
 ### CI/CD?
 - 지속적 통합(Continuous Integration, CI)
 	- "CI"는 개발자를 위한 자동화 프로세스인 지속적인 통합(Continuous Integration)을 의미
@@ -44,7 +44,7 @@ https://docs.github.com/en/actions/learn-github-actions/understanding-github-act
 - GitHub Actions는 빌드, 테스트 및 배포 파이프라인을 자동화할 수 있는 CI/CD(지속적 통합 및 지속적 전달) 플랫폼
 
 ### The components of GitHub Actions
-![overview-actions-simple.webp](./Image/overview-actions-simple.webp)
+![overview-actions-simple.webp](./image/overview-actions-simple.webp)
 - Events
 	- 이벤트는 워크플로우 실행을 트리거하는 저장소의 특정 활동 
 	- pushes a commit to a repository, pull reques, opens an issue...
