@@ -69,7 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 244.5
   },
   "right": {
     "id": "7c3545c1bfa5e3cf",
@@ -146,7 +146,7 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "cd5f209e94a3c251",
+  "active": "b12aa99d2dcf9d81",
   "lastOpenFiles": [
     "week1/image/overview-actions-simple.webp",
     "week1/week1.md",
