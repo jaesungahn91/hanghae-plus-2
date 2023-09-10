@@ -8,7 +8,7 @@
 --- 
 # Docker
 https://docs.docker.com/get-started/overview/
-![architecture.svg](architecture.svg)
+![architecture.svg](./image/architecture.svg)
 - Docker는 애플리케이션을 개발, 제공 및 실행하기 위해 도커는 **컨테이너 기술을 기반으로 한 일종의 가상화 플랫폼**
 	- **실행환경을 컨테이너로 추상화**
 - Docker를 사용하면 애플리케이션을 인프라에서 분리하여 소프트웨어를 신속하게 제공
