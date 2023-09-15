@@ -74,7 +74,7 @@ on:
 
 env:  
   AWS_REGION: ap-northeast-2  
-  ECR_REPOSITORY: test  
+  ECR_REPOSITORY: ecr-continuous
   ECS_SERVICE: test-service  
   ECS_CLUSTER: test-cluster  
   ECS_TASK_DEFINITION: test-task.json  
@@ -218,7 +218,7 @@ jobs:
             github_token: ${{ secrets.GITHUB_TOKEN }}  
             reporter: github-pr-check  
 
-      - name: Build and analyze  
+      - name: Build 
         run: |  
           ./gradlew build jacocoTestReport  
       - uses: actions/upload-artifact@v3.1.3  
