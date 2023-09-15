@@ -153,13 +153,55 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}  
           service: ${{ env.ECS_SERVICE }}  
           cluster: ${{ env.ECS_CLUSTER }}  
-          wait-for-service-stability: true
+          wait-for-service-stability: true  
+  
+      - name: action-slack  
+        uses: 8398a7/action-slack@v3  
+        with:  
+          status: ${{ job.status }}  
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took  
+        env:  
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}  
+        if: always()
 ```
 - https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-amazon-elastic-container-service
 - https://github.com/mikepenz/action-junit-report
 - https://github.com/8398a7/action-slack
-
+- 
 
 
 ---
 # Phase 분리
+### case 1
+```yaml
+name: build-and-deploy
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  deploy-dev:
+	if: ${{ github.ref == 'refs/heads/develop' }}
+    ...
+			      
+  deploy-prod:
+    if: ${{ github.ref == 'refs/heads/main' }}
+	...
+
+  slack-notification:
+    if: ${{ always() }}
+	...
+```
+
+### case 2
+```yaml
+env:
+  AWS_REGION: ap-northeast-2
+  CONTAINER_NAME: example-application
+  ECR_REPOSITORY: ${{ github.ref == 'refs/heads/master' && 'production-example-application' || 'develop-example-application' }}
+  ECS_CLUSTER: ${{ github.ref == 'refs/heads/master' && 'production-example-application' || 'develop-example-application' }}
+  ECS_SERVICE: ${{ github.ref == 'refs/heads/master' && 'production-example-application' || 'develop-example-application' }}
+  ECS_TASK_DEFINITION: ${{ github.ref == 'refs/heads/master' && 'task-definition-production.json' || 'task-definition-develop.json' }}
+```
