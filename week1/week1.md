@@ -71,7 +71,7 @@ on:
     branches: [ "main" ]  
   pull_request:  
     branches: [ "main" ]  
-  9
+
 env:  
   AWS_REGION: ap-northeast-2  
   ECR_REPOSITORY: test  
@@ -212,18 +212,18 @@ jobs:
 		  key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}  
 		  restore-keys: ${{ runner.os }}-gradle
 
+      - name: ktlint  
+        uses: ScaCap/action-ktlint@master  
+        with:  
+            github_token: ${{ secrets.GITHUB_TOKEN }}  
+            reporter: github-pr-check  
+
       - name: Build and analyze  
         run: |  
           ./gradlew build jacocoTestReport  
       - uses: actions/upload-artifact@v3.1.3  
         with:  
           path: build/libs/*.jar  
-  
-      - name: ktlint  
-        uses: ScaCap/action-ktlint@master  
-        with:  
-            github_token: ${{ secrets.GITHUB_TOKEN }}  
-            reporter: github-pr-check  
   
       - name: Add coverage to PR  
         id: jacoco  
