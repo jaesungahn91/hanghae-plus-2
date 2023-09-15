@@ -175,6 +175,129 @@ jobs:
 	- https://velog.io/@insutance/github-action-slack-send
 - https://github.com/slackapi/slack-github-action
 
+```yaml
+name: build-and-deploy  
+  
+on:  
+  push:  
+    branches: [ "main" ]  
+  pull_request:  
+    branches: [ "main" ]  
+  
+env:  
+  AWS_REGION: ap-northeast-2  
+  ECR_REPOSITORY: test  
+  ECS_SERVICE: test-service  
+  ECS_CLUSTER: test-cluster  
+  ECS_TASK_DEFINITION: test-task.json  
+  CONTAINER_NAME: app  
+  
+jobs:  
+  build:  
+    runs-on: ubuntu-latest  
+  
+    steps:  
+      - uses: actions/checkout@v3  
+  
+      - name: Set up JDK 17  
+        uses: actions/setup-java@v3  
+        with:  
+          java-version: '17'  
+          distribution: 'temurin'  
+  
+      - name: ktlint  
+        uses: ScaCap/action-ktlint@master  
+        with:  
+          github_token: ${{ secrets.github_token }}  
+          reporter: github-pr-check  
+  
+      - name: Build and analyze  
+        run: |  
+          ./gradlew build jacocoTestReport  
+      - uses: actions/upload-artifact@v3.1.3  
+        with:  
+          path: build/libs/*.jar  
+  
+      - name: Add coverage to PR  
+        id: jacoco  
+        uses: madrapps/jacoco-report@v1.6.1  
+        with:  
+          paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml  
+          token: ${{ secrets.GITHUB_TOKEN }}  
+          min-coverage-overall: 50  
+          min-coverage-changed-files: 50  
+  
+#      - name: Cache SonarCloud packages  
+#        uses: actions/cache@v3.3.2  
+#        with:  
+#          path: ~/.sonar/cache  
+#          key: ${{ runner.os }}-sonar  
+#          restore-keys: ${{ runner.os }}-sonar  
+#  
+#      - name: Cache Gradle packages  
+#        uses: actions/cache@v3.3.2  
+#        with:  
+#          path: ~/.gradle/caches  
+#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}  
+#          restore-keys: ${{ runner.os }}-gradle  
+#  
+#      - name: Build and analyze  
+#        env:  
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  
+#        run: ./gradlew build jacocoTestReport sonar --info  
+#      - uses: actions/upload-artifact@v3.1.3  
+#        with:  
+#          path: build/libs/*.jar  
+#  
+#      - name: Configure AWS credentials  
+#        uses: aws-actions/configure-aws-credentials@v2  
+#        with:  
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+#          aws-region: ${{ env.AWS_REGION }}  
+#  
+#      - name: Login to Amazon ECR  
+#        id: login-ecr  
+#        uses: aws-actions/amazon-ecr-login@v1  
+#        with:  
+#          mask-password: 'true'  
+#  
+#      - name: Build, tag, and push docker image to Amazon ECR  
+#        id: build-image  
+#        env:  
+#          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}  
+#          IMAGE_TAG: latest  
+#        run: |  
+#          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .  
+#          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG  
+#          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT  
+#  
+#      - name: Fill in the new image ID in the Amazon ECS task definition  
+#        id: task-def  
+#        uses: aws-actions/amazon-ecs-render-task-definition@v1  
+#        with:  
+#          task-definition: ${{ env.ECS_TASK_DEFINITION }}  
+#          container-name: ${{ env.CONTAINER_NAME }}  
+#          image: ${{ steps.build-image.outputs.image }}  
+#  
+#      - name: Deploy Amazon ECS task definition  
+#        uses: aws-actions/amazon-ecs-deploy-task-definition@v1  
+#        with:  
+#          task-definition: ${{ steps.task-def.outputs.task-definition }}  
+#          service: ${{ env.ECS_SERVICE }}  
+#          cluster: ${{ env.ECS_CLUSTER }}  
+#          wait-for-service-stability: true  
+  
+      - name: action-slack  
+        uses: 8398a7/action-slack@v3  
+        with:  
+          status: ${{ job.status }}  
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took  
+        env:  
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}  
+        if: always()
+```
 
 ---
 # Phase 분리
