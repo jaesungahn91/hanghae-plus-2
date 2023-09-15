@@ -61,9 +61,9 @@ https://docs.github.com/en/actions/learn-github-actions/understanding-github-act
 	- 러너는 워크플로우가 트리거될 때 워크플로우를 실행하는 서버
 	- 각각의 Job은 개별의 Runner에서 실행
 ---
-# ci.yml
+# build-and-deploy.yml
 ```yaml
-name: ci  
+name: build-and-deploy  
   
 on:  
   pull_request:  
@@ -102,6 +102,7 @@ jobs:
       with:  
         path: build/libs/*.jar
 ```
----
-
+- 
+- https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-amazon-elastic-container-service
+- 
 
