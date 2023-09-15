@@ -164,7 +164,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}  
         if: always()
 ```
-- https://github.com/ScaCap/action-ktlint#inputs
+- https://github.com/ScaCap/action-ktlint
 - https://github.com/mikepenz/action-junit-report
 - https://github.com/Madrapps/jacoco-report
 
