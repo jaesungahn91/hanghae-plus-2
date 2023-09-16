@@ -1,3 +1,5 @@
 - 롱런하는 개발자 마인드셋
+	- 왜?
 - 
-- Aggregate Root
+	- Aggregate Root
+	- 
