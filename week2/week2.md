@@ -1,2 +1,3 @@
-- 2
-	- Aggregate Root
+- 롱런하는 개발자 마인드셋
+- 
+- Aggregate Root
