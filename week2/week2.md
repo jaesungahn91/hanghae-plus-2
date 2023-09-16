@@ -5,4 +5,6 @@
 	- CQRS
 - 조인문제: FK
 	- Aggregate Root
-	- 
+- 락 및 데드락
+	- 분산락
+---
