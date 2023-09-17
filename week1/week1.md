@@ -139,14 +139,10 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG  
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT  
   
-      - name: Fill in the new image ID in the Amazon ECS task definition  
-        id: task-def  
-        uses: aws-actions/amazon-ecs-render-task-definition@v1  
-        with:  
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}  
-          container-name: ${{ env.CONTAINER_NAME }}  
-          image: ${{ steps.build-image.outputs.image }}  
-  
+    - name: Download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition my-task-definition-family --query taskDefinition > task-definition.json
+
       - name: Deploy Amazon ECS task definition  
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1  
         with:  
@@ -333,9 +329,22 @@ on:
 ---
 # 트러블 슈팅
 ### amazon-ecs-render-task-definition
-- 항해 플러스 2기 김승빈님을 통해 알게된 사실
->  Inserts a container image URI into an Amazon ECS task definition JSON file, creating a new task definition file.
-- ㅂ
+항해 플러스 2기 김승빈님을 통해 알게된 사실
+- 변경 전
+```yaml
+      - name: Fill in the new image ID in the Amazon ECS task definition  
+        id: task-def  
+        uses: aws-actions/amazon-ecs-render-task-definition@v1  
+        with:  
+          task-definition: ${{ env.ECS_TASK_DEFINITION }}  
+          container-name: ${{ env.CONTAINER_NAME }}  
+          image: ${{ steps.build-image.outputs.image }}  
 ```
+새 작업 정의 파일을 생성
+>  Inserts a container image URI into an Amazon ECS task definition JSON file, creating a new task definition file.
+
+- 변경 후
+```yaml
 
 ```
+ECS에 정의된 task를 불러온다
