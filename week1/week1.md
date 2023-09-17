@@ -1,10 +1,10 @@
 - [x] 컨테이너 개념을 학습합니다. 컨테이너 서비스는 `docker` 를 사용합니다.
-- [ ] `Github Actions` 를 이용해 PR 등에 대해 Trigger 되는 CI/CD 환경을 구축합니다.
+- [x] `Github Actions` 를 이용해 PR 등에 대해 Trigger 되는 CI/CD 환경을 구축합니다.
 	- [x] Lint 체크
 	- [x] Coverage 리포트, Test 체크
-	- [ ] phase 별로 서로 다른 파이프라인을 생성해보세요.
-- [ ] `docker-compose` 를 이용해 서버와 DB 를 이미지로 생성합니다.
-	- [ ] phase 별로 다른 명세가 필요할 수 있습니다.
+	- [x] phase 별로 서로 다른 파이프라인을 생성해보세요.
+- [x] `docker-compose` 를 이용해 서버와 DB 를 이미지로 생성합니다.
+	- [x] phase 별로 다른 명세가 필요할 수 있습니다.
 --- 
 # Docker
 https://docs.docker.com/get-started/overview/
@@ -329,4 +329,13 @@ on:
   push:
     branches:
       - main
+```
+---
+# 트러블 슈팅
+### amazon-ecs-render-task-definition
+- 항해 플러스 2기 김승빈님을 통해 알게된 사실
+>  Inserts a container image URI into an Amazon ECS task definition JSON file, creating a new task definition file.
+- ㅂ
+```
+
 ```
