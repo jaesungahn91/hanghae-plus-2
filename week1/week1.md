@@ -76,9 +76,9 @@ env:
   AWS_REGION: ap-northeast-2  
   ECR_REPOSITORY: ecr-continuous
   ECS_SERVICE: test-service  
-  ECS_CLUSTER: test-cluster  
-  ECS_TASK_DEFINITION: test-task.json  
+  ECS_CLUSTER: test-cluster
   CONTAINER_NAME: app  
+  TASK_FAMILY: test-task
   
 jobs:  
   build:  
@@ -139,14 +139,16 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG  
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT  
   
-    - name: Download task definition
-      run: |
-        aws ecs describe-task-definition --task-definition my-task-definition-family --query taskDefinition > task-definition.json
+	  - name: Download task definition
+		id: retrieve-task-def
+	    run: |
+	      aws ecs describe-task-definition --task-definition $TASK_FAMILY --query taskDefinition > task-task-definition.json
+	      echo "::set-output name=task-def-file::task-definition.json"
 
       - name: Deploy Amazon ECS task definition  
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1  
         with:  
-          task-definition: ${{ steps.task-def.outputs.task-definition }}  
+          task-definition: ${{ steps.retrieve-task-def.outputs.task-def-file }}  
           service: ${{ env.ECS_SERVICE }}  
           cluster: ${{ env.ECS_CLUSTER }}  
           wait-for-service-stability: true  
@@ -345,6 +347,11 @@ on:
 
 - 변경 후
 ```yaml
+	  - name: Download task definition
+		id: retrieve-task-def
+	    run: |
+	      aws ecs describe-task-definition --task-definition $TASK_FAMILY --query taskDefinition > task-task-definition.json
+	      echo "::set-output name=task-def-file::task-definition.json"
 
 ```
 ECS에 정의된 task를 불러온다
