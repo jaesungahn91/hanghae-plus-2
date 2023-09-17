@@ -18,3 +18,4 @@
 - 분산락
 ---
 # Chapter 2
+## 사용자 UseCase
