@@ -1,3 +1,5 @@
+# Chapter 2
+
 - [x] 컨테이너 개념을 학습합니다. 컨테이너 서비스는 `docker` 를 사용합니다.
 - [x] `Github Actions` 를 이용해 PR 등에 대해 Trigger 되는 CI/CD 환경을 구축합니다.
 	- [x] Lint 체크
@@ -6,7 +8,7 @@
 - [x] `docker-compose` 를 이용해 서버와 DB 를 이미지로 생성합니다.
 	- [x] phase 별로 다른 명세가 필요할 수 있습니다.
 --- 
-# Docker
+## Docker
 https://docs.docker.com/get-started/overview/
 ![architecture.svg](./image/architecture.svg)
 - Docker는 애플리케이션을 개발, 제공 및 실행하기 위해 도커는 **컨테이너 기술을 기반으로 한 일종의 가상화 플랫폼**
@@ -27,7 +29,7 @@ https://docs.docker.com/compose/
 - Compose는 다중 컨테이너 Docker 애플리케이션을 정의하고 실행하기 위한 도구
 - Compose에서는 YAML 파일을 사용하여 애플리케이션 서비스를 구성합니다. 그런 다음 단일 명령을 사용하여 구성에서 모든 서비스를 생성하고 시작
 
-# CI/CD
+## CI/CD
 https://www.redhat.com/ko/topics/devops/what-cicd-pipeline
 ![ci-cd-flow-desktop_0.png](./image/ci-cd-flow-desktop_0.png)
 ### CI/CD?
@@ -39,7 +41,7 @@ https://www.redhat.com/ko/topics/devops/what-cicd-pipeline
 - 지속적 배포(Continuous Deployment, CD)
 	- 지속적인 배포(또 다른 의미의 "CD": Continuous Deployment)란 개발자의 변경 사항을 리포지토리에서 고객이 사용 가능한 프로덕션 환경까지 자동으로 릴리스하는 것을 의미
 
-# GitHub Actions
+## GitHub Actions
 https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
 - GitHub Actions는 빌드, 테스트 및 배포 파이프라인을 자동화할 수 있는 CI/CD(지속적 통합 및 지속적 전달) 플랫폼
 
@@ -61,7 +63,7 @@ https://docs.github.com/en/actions/learn-github-actions/understanding-github-act
 	- 러너는 워크플로우가 트리거될 때 워크플로우를 실행하는 서버
 	- 각각의 Job은 개별의 Runner에서 실행
 ---
-# Workflow
+## Workflow
 ## build-and-deploy.yml
 ```yaml
 name: build-and-deploy  
@@ -275,7 +277,7 @@ jobs:
 ```
 
 ---
-# Phase 분리
+## Phase 분리
 ### case 1
 ```yaml
 name: build-and-deploy
@@ -329,7 +331,7 @@ on:
       - main
 ```
 ---
-# 트러블 슈팅
+## 트러블 슈팅
 ### amazon-ecs-render-task-definition
 항해 플러스 2기 김승빈님을 통해 알게된 사실
 - 변경 전
