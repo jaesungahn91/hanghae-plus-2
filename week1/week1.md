@@ -313,6 +313,20 @@ env:
 ```
 
 ### case 3
+- ci.yml
 ```yaml
+name: ci
+on:
+  pull_request:
+    branches:
+      - main
 
+```
+- cd.yml
+```yaml
+name: cd
+on:
+  push:
+    branches:
+      - main
 ```
