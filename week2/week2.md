@@ -18,7 +18,7 @@
 - 분산락
 ---
 # Chapter 2
-## 테스트 케이스(사용자 입장)
+## 테스트 케이스
 
 ### 단위테스트
 #### 상품
@@ -103,3 +103,10 @@
 		- 사용자 정보가 잘못 되었을 경우
 	- 기본 배송지 여부 검증
 		- 기본 배송지 여부에 따라 삭제 여부 확인
+
+---
+
+## 이벤트 스토밍
+https://www.figma.com/file/OX8XVKsWjhY2CuL57DuzZQ/voyagers?type=whiteboard&node-id=94%3A501&t=Dq1hBgvJzRoS6nwW-1
+
+![event](./image/event-storming.png)
