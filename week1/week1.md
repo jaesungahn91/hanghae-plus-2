@@ -144,7 +144,7 @@ jobs:
 	  - name: Download task definition
 		id: retrieve-task-def
 	    run: |
-	      aws ecs describe-task-definition --task-definition $TASK_FAMILY --query taskDefinition > task-task-definition.json
+	      aws ecs describe-task-definition --task-definition $TASK_FAMILY --query taskDefinition > task-definition.json
 	      echo "::set-output name=task-def-file::task-definition.json"
 
       - name: Deploy Amazon ECS task definition  
