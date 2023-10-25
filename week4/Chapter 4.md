@@ -27,3 +27,28 @@
         - 배포시의 하위호환성 보장 전략
         - 롤백에 대한 배포전략
 ---
+**부하**란, **처리를 실행하려고 해도 실행할 수 없어서 대기하고 있는 프로세스의 수**를 의미
+### * 테스트 설정값 구하기
+#### 1. 목표 rps 구하기
+a. 우선 예상 1일 사용자 수(DAU)를 정해봅니다.  
+b. 피크 시간대의 집중률을 예상해봅니다. (최대 트개픽 / 평소 트래픽)  
+c. 1명당 1일 평균 접속 혹은 요청수를 예상해봅니다.  
+d. 이를 바탕으로 Throughput을 계산합니다.
+
+- **Throughput : 1일 평균 rps ~ 1일 최대 rps**
+    - 1일 사용자 수(DAU) x 1명당 1일 평균 접속 수 = 1일 총 접속 수
+    - 1일 총 접속 수 / 86,400 (초/일) = 1일 평균 rps
+    - 1일 평균 rps x (최대 트래픽 / 평소 트래픽) = 1일 최대 rps
+#### 2. VUser 구하기
+- Request Rate: measured by the number of requests per second (RPS)
+- VU: the number of virtual users
+- R: the number of requests per VU iteration
+- T: a value larger than the time needed to complete a VU iteration
+```plaintext
+T = (R * http_req_duration) (+ 1s) ; 내부망에서 테스트할 경우 예상 latency를 추가한다
+VUser = (목표 rps * T) / R
+```
+- 가령, 두개의 요청 (**R=2**)이 있고, 왕복시간이 0.5s, 지연시간이 1초라고 가정할 때 (**T=2**), 계산식은 아래와 같다.
+> VU = (300 * 2) / 2 = 300
+#### 3. 테스트 기간
+- 일반적으로 Load Test는 보통 30분 ~ 2시간 사이로 권장합니다. 부하가 주어진 상황에서 DB Failover, 배포 등 여러 상황을 부여하며 서비스의 성능을 확인합니다.
