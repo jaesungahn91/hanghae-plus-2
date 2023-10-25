@@ -1,6 +1,6 @@
-# 특강
-## 지속적으로 성장하는 개발자
-![good-developers.png](./image/good-developers.png)
+# 통합 모니터링 시스템 구축
+## 특강 - 지속적으로 성장하는 개발자
+![good-developers.png](good-developers.png)
 ### 지속적인 성장 방법
 - 오버 엔지니어링 X, 적절한 논리력
 - 사용하는 코드만 만들기(Caller Create)
@@ -30,3 +30,4 @@
 > 인간은 합리적이지 않다.
 > 인간은 합리적인 존재가 아니라 합리화하는 존재
 ---
+## 통합 모니터링 시스템 구축

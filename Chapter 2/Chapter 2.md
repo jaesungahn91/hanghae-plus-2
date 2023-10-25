@@ -1,4 +1,4 @@
-# 오프라인 발제 및 기술 나눔
+# TDD 서버 구축
 ## 토요 지식회
 ### 소프트 스킬
 #### 롱런하는 개발자 마인드셋
@@ -17,7 +17,6 @@
 > 다양한 서버가 동시에 같은 DB 를 바라보고 작업하게 될텐데, 이 때 데이터의 동시성 문제는 어떻게 지켜질 수 있을까?
 - 분산락
 ---
-# Chapter 2
 ## 테스트 케이스
 
 ### 단위테스트
@@ -133,4 +132,4 @@
 ## 이벤트 스토밍
 https://www.figma.com/file/OX8XVKsWjhY2CuL57DuzZQ/voyagers?type=whiteboard&node-id=94%3A501&t=Dq1hBgvJzRoS6nwW-1
 
-![event](./image/event-storming.png)
+![event](event-storming.png)

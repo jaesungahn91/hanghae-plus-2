@@ -1,5 +1,4 @@
-# Chapter 2
-
+# CI/CD 배포 파이프라인 구축
 - [x] 컨테이너 개념을 학습합니다. 컨테이너 서비스는 `docker` 를 사용합니다.
 - [x] `Github Actions` 를 이용해 PR 등에 대해 Trigger 되는 CI/CD 환경을 구축합니다.
 	- [x] Lint 체크
@@ -10,7 +9,7 @@
 --- 
 ## Docker
 https://docs.docker.com/get-started/overview/
-![architecture.svg](./image/architecture.svg)
+![architecture.svg](architecture.svg)
 - Docker는 애플리케이션을 개발, 제공 및 실행하기 위해 도커는 **컨테이너 기술을 기반으로 한 일종의 가상화 플랫폼**
 	- **실행환경을 컨테이너로 추상화**
 - Docker를 사용하면 애플리케이션을 인프라에서 분리하여 소프트웨어를 신속하게 제공
@@ -31,7 +30,7 @@ https://docs.docker.com/compose/
 
 ## CI/CD
 https://www.redhat.com/ko/topics/devops/what-cicd-pipeline
-![ci-cd-flow-desktop_0.png](./image/ci-cd-flow-desktop_0.png)
+![ci-cd-flow-desktop_0.png](ci-cd-flow-desktop_0.png)
 ### CI/CD?
 - 지속적 통합(Continuous Integration, CI)
 	- "CI"는 개발자를 위한 자동화 프로세스인 지속적인 통합(Continuous Integration)을 의미
@@ -46,7 +45,7 @@ https://docs.github.com/en/actions/learn-github-actions/understanding-github-act
 - GitHub Actions는 빌드, 테스트 및 배포 파이프라인을 자동화할 수 있는 CI/CD(지속적 통합 및 지속적 전달) 플랫폼
 
 ### The components of GitHub Actions
-![overview-actions-simple.webp](./image/overview-actions-simple.webp)
+![overview-actions-simple.webp](overview-actions-simple.webp)
 - Events
 	- 이벤트는 워크플로우 실행을 트리거하는 저장소의 특정 활동 
 	- pushes a commit to a repository, pull reques, opens an issue...
