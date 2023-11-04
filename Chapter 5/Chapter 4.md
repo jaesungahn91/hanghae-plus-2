@@ -20,7 +20,33 @@
 - 패키지
 	- 분리할 수 없는는 단위 묶음?
 		- 분리되면 안되는 단위?
-		-  
+		- ex)
+			- controller
+			- domain
+			- facade or application <= 도메인 로직을 응용 혹은 조합
+			- infrastructure
 - 모듈
 	- 조합할 수 있는 단위?
-	- 
+	- 분리가능하고 
+	- ex)
+		- api-service-name
+		- support
+			- 비가역적 모듈
+			- 라이브러리?
+		- module(infra)
+			- main-db(mysql)
+			- redis(spring-data-redis)
+			- jpa
+				- entity
+			- client(외부 api 호출)
+boot 단위
+-> bootstrap
+	- bootstrap-api
+	- bootstrap-batch
+
+
+- 도메인 validation
+	- service에 validation 만드는거
+	- user domain 생성시 검증
+	- user 도메인에 확인하기
+		- ex) user.validation()
