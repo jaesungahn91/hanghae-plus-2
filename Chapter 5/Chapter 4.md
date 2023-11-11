@@ -1,4 +1,5 @@
 # 오픈소스 프로젝트
+
 - 모듈/패키지
 	- 폴더 structure
 	- project
@@ -9,7 +10,6 @@
 	- transaction관리
 		- 2pc 
 		- saga
-
 - 모노레포
 	- 예) 구글
 - 멀티레포
